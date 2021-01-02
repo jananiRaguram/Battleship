@@ -1,4 +1,4 @@
-package BattleShip;
+package Battleship;
 
 import java.util.*;
 
@@ -21,8 +21,8 @@ public class BattleShip {
 	public void setUpGame() {
 		Setup ships = new Setup();
 		shipsList = ships.placeShips();
-		System.out.println("There are 3 ships to sink on a 7x7 game board.");
-		System.out.println("Coordinates of each ship range from a-g and 0-7." + "\n");
+		System.out.println("There are 3 ships to sink on a 3x3 game board.");
+		System.out.println("Coordinates of each ship range from A-C and 0-2." + "\n");
 		System.out.println("Try to sink them all with the least number of guesses!");
 		System.out.println(shipsList);
 	}
@@ -37,57 +37,31 @@ public class BattleShip {
 	}
 
 	
-	// /*playing game*/
-	// public void playGame() {
-	// 	int shipsFound = 0;
-	// 	while(shipsFound != 3) {
-	// 		Scanner keyboard = new Scanner(System.in);
-	// 		try {
-	// 			String input = keyboard.nextLine();
-	// 			input.toLowerCase();
-	// 			shipsFound += checkGuess(input);
-	// 		} catch (Exception e) {
-	// 			System.out.println("no input");
-	// 		}
-		
-	// 	}
-	// 	finishGame();
-	// 	System.out.println(hitList);
-	// }
-	
-	
 	/*checkGuess*/
-	public int checkGuess(String userInput) {
+	public String checkGuess(String userInput) {
 		boolean hit = false;
 		numOfGuesses++; 
 		for(HashSet<String> ship: shipsList ) {
 			hit = ship.contains(userInput);
 			if(hit) {
-				System.out.println("hit");
+				// System.out.println("hit");
 				hitList.add(userInput);
 				ship.remove(userInput);
 				if(ship.isEmpty()) {
 					shipsFound++;
-					System.out.println("kill");
-					System.out.println("Only " + (3 - shipsFound) + " ships left");
-				}
-				if(hitList.size() > 0) {
-					System.out.println("all hits:" + "\n" + hitList);
+					// System.out.println("kill");
+					// System.out.println("Only " + (3 - shipsFound) + " ships left");
 				}
 				break;
 			}else{
 				missList.add(userInput);
 			}
-			
 		}
 		if(missList.contains(userInput) && !hitList.contains(userInput)) {
-            System.out.println("miss");
-            if(missList.size() > 0) {
-                System.out.println("all misses:" + "\n" + missList);
-            }
+            return "miss";
+		}else{
+			return "hit";
 		}
-
-		return shipsFound;
 	}
 	
 	

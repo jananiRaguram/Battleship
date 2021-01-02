@@ -1,4 +1,4 @@
-package BattleShip;
+package Battleship;
 
 import java.util.*;
 import java.io.*;
@@ -8,7 +8,7 @@ public class Setup {
 	public HashSet<HashSet<String>> placeShips() {
 		HashSet<HashSet<String>> ships = new HashSet<HashSet<String>>();
 		String coord = null;
-		int max = 7;
+		int max = 3;
 		int min = 1; 
 		char newC = '\0';
 		int numOfShips = 1;
@@ -24,7 +24,7 @@ public class Setup {
 			String eachShip[] = new String[shipSize];
 			
 			/*random starting character*/
-			String alpha = "abcdefg";
+			String alpha = "ABC";
 			Random rndChar = new Random();
 			char c = alpha.charAt(rndChar.nextInt(alpha.length()));
 //			System.out.println(numOfShips);
@@ -46,14 +46,14 @@ public class Setup {
 			}
 			usedC.add(c);
 			
-			/*random number from 0 to 7 (inclusive)*/
+			/*random number from 0 to 3 (inclusive)*/
 			Random rndNum = new Random();
-			int num = rndNum.nextInt((7 - 0) + 1) + 0; 
+			int num = rndNum.nextInt((3 - 0) + 1) + 0; 
 			
 			/*making sure that the range for the ship size can fit in the starting position*/
 			int rightSize = num + shipSize;
-			while(rightSize > 7) {
-				num = rndNum.nextInt((7 - 0) + 1) + 0;
+			while(rightSize > 3) {
+				num = rndNum.nextInt((3 - 0) + 1) + 0;
 				rightSize = num + shipSize;
 //				System.out.println("bigger randnum" + num);
 			}
