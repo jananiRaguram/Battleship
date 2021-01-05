@@ -21,9 +21,6 @@ public class BattleShip {
 	public void setUpGame() {
 		Setup ships = new Setup();
 		shipsList = ships.placeShips();
-		System.out.println("There are 3 ships to sink on a 3x3 game board.");
-		System.out.println("Coordinates of each ship range from A-C and 0-2." + "\n");
-		System.out.println("Try to sink them all with the least number of guesses!");
 		System.out.println(shipsList);
 	}
 	
@@ -36,11 +33,14 @@ public class BattleShip {
 		return shipsFound;
 	}
 
+	public int getNumGuesses(){
+		return numOfGuesses;
+	}
 	
 	/*checkGuess*/
 	public String checkGuess(String userInput) {
 		boolean hit = false;
-		numOfGuesses++; 
+		this.numOfGuesses++; 
 		for(HashSet<String> ship: shipsList ) {
 			hit = ship.contains(userInput);
 			if(hit) {
@@ -65,9 +65,4 @@ public class BattleShip {
 	}
 	
 	
-	/*finish game*/
-	public void finishGame() {
-            System.out.print("Congrats you sank all the ships with " + numOfGuesses + " guesses!");
-	}
-
 }
